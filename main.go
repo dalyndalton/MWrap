@@ -1,11 +1,11 @@
 package main
 
 import (
-	"MWrap/tcpserver"
-	"MWrap/wrapper"
-	"fmt"
 	"os"
 	"os/signal"
+
+	"github.com/dalyndalton/MWrap/wrapper"
+	"github.com/dalyndalton/MWrap/ws"
 )
 
 const PATH string = "../Minecraft1.18.2"
@@ -18,11 +18,9 @@ func main() {
 	cmd := wrapper.JavaExecCmd(PATH, 1024, 1024)
 	console := wrapper.NewConsole(cmd)
 	w := wrapper.NewWrapper(console)
-	w.Start()
-	fmt.Println("Go server up and running ! ✅")
 
 	// Start Web server
-	go tcpserver.ServerTCPStart(PORT, w)
+	go ws.SetupWebsocket(w)
 
 	// Listen for ctrl + c
 	quit := make(chan os.Signal, 1)
