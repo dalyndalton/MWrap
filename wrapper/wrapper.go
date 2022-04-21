@@ -45,10 +45,12 @@ func (w *Wrapper) DisplayLogs(q chan string) {
 }
 
 func (w *Wrapper) SendMessage(msg string) {
+	// TODO: add in more custom commands using a custom command parser
 	if msg == "start" {
 		w.Start()
+	} else {
+		w.console.WriteCmd(msg)
 	}
-	w.console.WriteCmd(msg)
 }
 
 func onStateChange() {
