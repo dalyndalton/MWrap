@@ -40,7 +40,7 @@ func (w *Wrapper) DisplayLogs(q chan string) {
 			go onStateChange()
 
 		}
-		q <- fmt.Sprintf("%s : %s\n", log.timestamp, log.output)
+		q <- fmt.Sprintf("%s\n", log.output)
 	}
 }
 

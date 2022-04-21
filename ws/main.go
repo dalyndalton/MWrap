@@ -32,6 +32,10 @@ func reader(conn *websocket.Conn) {
 	}
 }
 
+/*
+* Sets up a listener on the websocket, and creates a thread that sends the
+* output to the user.
+ */
 func listener(conn *websocket.Conn) {
 	msg_c := make(chan string, 1)
 	go w.DisplayLogs(msg_c)
